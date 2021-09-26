@@ -5,11 +5,6 @@
     </div>
   </nav>
 
-<!--<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">-->
-<!--    <div class="container-fluid">-->
-<!--      <router-link class="navbar-brand" to="/">Images</router-link>-->
-<!--    </div>-->
-<!--  </nav>-->
   </template>
 
 

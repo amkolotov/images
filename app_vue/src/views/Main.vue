@@ -14,25 +14,61 @@
 
       <div v-for="image in listImages" :key="image.id" class="row justify-content-between">
 
-        <div class="col-xxl-3 col-xl-6 align-self-center text-center my-5">
-          <div>
+        <div class="col-6 align-self-center text-center my-5">
+          <a :href="image.image.first_size_crop">
             <img :src="image.image.first_size_crop" alt="">
+          </a>
+          <div class="mt-2">
+            <button class="btn btn-outline-secondary" @click="clickedDownload(image.image.first_size_crop)">Загрузить</button>
           </div>
         </div>
 
-        <div class="col-xxl-3 col-xl-6 align-self-center text-center my-5"><a :href="image.image.first_size_thum"
-                                                                              download><img
-            :src="image.image.first_size_thum" alt=""></a></div>
+        <div class="col-6 align-self-center text-center my-5">
+          <a :href="image.image.first_size_thum">
+            <img :src="image.image.first_size_thum" alt="">
+          </a>
+          <div class="mt-2">
+            <button class="btn btn-outline-secondary" @click="clickedDownload(image.image.first_size_thum)">Загрузить</button>
+          </div>
+        </div>
 
-        <div class="col align-self-center text-center my-5"><a :href="image.image.second_size_crop" download><img
-            :src="image.image.second_size_crop" alt=""></a></div>
-        <div class="col align-self-center text-center my-5"><a :href="image.image.second_size_thum" download><img
-            :src="image.image.second_size_thum" alt=""></a></div>
+        <div class="col align-self-center text-center my-5">
+          <a :href="image.image.second_size_crop">
+            <img :src="image.image.second_size_crop" alt="">
+          </a>
+          <div class="mt-2">
+            <button class="btn btn-outline-secondary" @click="clickedDownload(image.image.second_size_crop)">Загрузить
+            </button>
+          </div>
+        </div>
 
-        <div class="col align-self-center text-center my-5"><a :href="image.image.third_size_crop" download><img
-            :src="image.image.third_size_crop" alt=""></a></div>
-        <div class="col align-self-center text-center my-5"><a :href="image.image.third_size_thum" download><img
-            :src="image.image.third_size_thum" alt=""></a></div>
+        <div class="col align-self-center text-center my-5">
+          <a :href="image.image.second_size_thum">
+            <img :src="image.image.second_size_thum" alt="">
+          </a>
+          <div class="mt-2">
+            <button class="btn btn-outline-secondary" @click="clickedDownload(image.image.second_size_thum)">Загрузить
+            </button>
+          </div>
+        </div>
+
+        <div class="col align-self-center text-center my-5">
+          <a :href="image.image.third_size_crop">
+            <img :src="image.image.third_size_crop" alt="">
+          </a>
+          <div class="mt-2">
+            <button class="btn btn-outline-secondary" @click="clickedDownload(image.image.third_size_crop)">Загрузить</button>
+          </div>
+        </div>
+
+        <div class="col align-self-center text-center my-5">
+          <a :href="image.image.third_size_thum">
+            <img :src="image.image.third_size_thum" alt="">
+          </a>
+          <div class="mt-2">
+            <button class="btn btn-outline-secondary" @click="clickedDownload(image.image.third_size_thum)">Загрузить</button>
+          </div>
+        </div>
 
         <hr>
 
@@ -90,6 +126,23 @@ export default {
         input.value = null
         window.location.reload();
       })
+    },
+    async clickedDownload(file) {
+      const filename = file.split('/').pop()
+      try {
+        const response = await fetch(file)
+        const blob = await response.blob();
+        const url = await URL.createObjectURL(blob)
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } catch (err) {
+        console.log({err})
+      }
     }
   }
 }
