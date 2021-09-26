@@ -11,7 +11,15 @@ DEBUG = bool(int(os.environ.get('DEBUG', default=1)))
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
+    'http://localhost:80',
+    'http://127.0.0.1:80',
+    'http://localhost:1337',
+    'http://127.0.0.1:1337',
+    'http://80.78.240.54/:80',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
