@@ -6,9 +6,9 @@ from apps.main.models import Image
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'image_tag', 'image', 'created_at']
+    list_display = ['id', 'image_tag', 'image', 'created_at', ]
     ordering = ('-created_at', )
     readonly_fields = ('image_tag',)
 
     def image_tag(self, obj):
-        return format_html(f'<img src="{obj.image.url}" />')
+        return format_html(f'<img src="{obj.image.url}" style="width:50px; height: 50px;" />')

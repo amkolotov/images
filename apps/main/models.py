@@ -8,15 +8,6 @@ from django.utils import timezone
 from versatileimagefield.fields import VersatileImageField, PPOIField
 
 
-# def get_image_path(instance, filename):
-#     ext = filename.split('.')[-1]
-#     filename = "%s.%s" % (uuid.uuid4(), ext)
-#     while os.path.exists(settings.MEDIA_ROOT / 'images/' / filename):
-#         filename = "%s.%s" % (uuid.uuid4(), ext)
-#
-#     return os.path.join('profile_pictures', filename)
-
-
 class Image(models.Model):
     image = VersatileImageField('Изображение', upload_to='images/', ppoi_field='image_ppoi')
     image_ppoi = PPOIField()
