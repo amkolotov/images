@@ -1,0 +1,6 @@
+Django
+django-cors-headers
+django-versatileimagefield
+djangorestframework
+gunicorn
+psycopg2-binary

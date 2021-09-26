@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTOCODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update
-RUN apt-get upgrade -y && apt-get -y install postgresql-dev gcc python3-dev musl-dev
+RUN apt-get upgrade -y && apt-get -y install gcc python3-dev musl-dev
 
 RUN pip install --upgrade pip
 
